@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(nv-rec)
+project(nvrec)
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -13,11 +13,12 @@ set(SOURCES
     src/main.cpp
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_executable(nvrec-server ${SOURCES} ${HEADERS})
 
-target_link_libraries(${PROJECT_NAME} -lpmemobj -lpmemlog -lpthread)
+target_link_libraries(nvrec-server -lpmemobj -lpmemlog -lpthread -lboost_thread
+    )
 
-target_include_directories(${PROJECT_NAME}
+target_include_directories(nvrec-server
     PRIVATE
         ${PROJECT_SOURCE_DIR}/include
 )
