@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package nvrec;
+
+
+service YCSB {
+
+  rpc Read(ReadRequest) returns (ReadResponse) {}
+
+  rpc Scan(ScanRequest) returns (ReadResponse) {}
+
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+
+  rpc Insert(UpdateRequest) returns (UpdateResponse) {}
+
+  rpc Delete(DeleteRequest) returns (UpdateResponse) {}
+
+ }
+
+enum ResultType {
+    FAIL = 0;
+    OK = 1;
+}
+
+message KVPair {
+  string key = 1;
+  string value = 2;
+}
+
+message ReadRequest {
+  string table = 1;
+  string key = 2;
+  repeated string fields = 3;
+}
+
+message ScanRequest {
+  string table = 1;
+  string key = 2;
+  uint64 recordcount = 3;
+  repeated string fields = 4;
+}
+
+message ReadResponse {
+  ResultType status = 1;
+  repeated KVPair result = 2;
+}
+
+message UpdateRequest {
+  string table = 1;
+  string key = 2;
+  repeated string values = 3;
+}
+
+message DeleteRequest {
+  string table = 1;
+  string key = 2;
+}
+
+message UpdateResponse {
+  ResultType status = 1;
+}
+
+
+
+
+
