@@ -7,16 +7,19 @@ set(CMAKE_AUTOMOC TRUE)
 
 set(HEADERS
     include/ycsb.pb.h
+    include/ycsb.grpc.pb.h
 )
 
 set(SOURCES
-    src/main.cpp
+    src/main.cc
     src/ycsb.pb.cc
+    src/ycsb.grpc.pb.cc
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-target_link_libraries(${PROJECT_NAME} -lpmemobj -lpmemlog -lpthread -lprotobuf -lgrpc)
+target_link_libraries(${PROJECT_NAME} -lpmemobj -lpmemlog -lpthread -lprotobuf -lgrpc++)
+
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
